@@ -192,7 +192,7 @@
         .to(s, { sx: .9, sy: 1.14, neck: -8 * -look, duration: dur * .35, ease: "power1.out" }, "air")
         .to(s, { sx: 1, sy: 1, duration: dur * .3 }, `air+=${dur * .4}`)
         .to(s, { sx: 1.18, sy: .78, neck: 6 * -look, duration: .09, ease: "power2.out" })
-        .to(s, { sx: 1, sy: 1, neck: 0, duration: .35, ease: "elastic.out(1, .45)" });
+        .to(s, { sx: 1, sy: 1, neck: 0, duration: .2, ease: "elastic.out(1, .45)" });
       s._y = toY;
     }
 
@@ -206,47 +206,35 @@
         .to(s, { y: top, sx: 1, sy: 1, duration: .14, ease: "power3.in" }, "st+=.16")
         .to(s, { iScale: scale, duration: .14, ease: "power3.in" }, "st+=.16")
         .to(s, { sx: 1.22, sy: .74, duration: .08, ease: "power2.out" })
-        .to(s, { sx: 1, sy: 1, duration: .3, ease: "elastic.out(1, .5)" });
+        .to(s, { sx: 1, sy: 1, duration: .18, ease: "elastic.out(1, .5)" });
       s._y = top;
     }
 
     const capTop = FLOOR - CAP;
 
-    tl.to(s, { scene: 1, duration: .7, ease: "power1.out" })
-      .set(s, { ex: -5 }, "<")
-      .add(() => {}, "+=.1");
+    tl.to(s, { scene: 1, duration: .35, ease: "power1.out" })
+      .set(s, { ex: -5 }, "<");
 
-    // Entra pela direita pulando no chão
-    hop(610, FLOOR, 46, .42);
-    hop(560, FLOOR, 30, .34);
-    // Para, olha as letras e decide subir
-    tl.to(s, { ex: -6, ey: -2, head: 6, duration: .25 })
-      .to(s, { blink: .1, duration: .06 }, "+=.2").to(s, { blink: 1, duration: .08 });
-    // Sobe no A e depois no T
-    hop(426, capTop, 64, .5);
-    hop(344, capTop, 40, .42);
+    // Entra pela direita, sobe no A e depois no T
+    hop(426, capTop, 80, .55);
+    hop(344, capTop, 36, .36);
     // Olha para baixo, para o "I"
-    tl.to(s, { neck: -10, head: -22, ex: -6, ey: 4, duration: .3, ease: "power2.out" })
-      .to(s, { ex: 0, ey: 0, head: -4, duration: .18 }, "+=.35")
-      .to(s, { ex: -6, ey: 4, head: -22, duration: .14 }, "+=.25")
-      .to(s, { neck: 0, head: 0, duration: .2 }, "+=.15");
-    // Pula em cima do "I" e amassa ele em três pulinhos
-    hop(I_X, capTop, 34, .4);
-    stomp(.66, 30);
-    stomp(.33, 26);
+    tl.to(s, { neck: -10, head: -22, ex: -6, ey: 4, duration: .22, ease: "power2.out" })
+      .to(s, { neck: 0, head: 0, duration: .15 }, "+=.2");
+    // Pula em cima do "I" e amassa ele em dois pulinhos
+    hop(I_X, capTop, 30, .36);
+    stomp(.5, 26);
     stomp(0, 22);
-    // Vira para a câmera
-    tl.to(s, { ex: 0, ey: 0, head: 8, neck: 3, duration: .35, ease: "back.out(2)" }, "+=.15")
-      .to(s, { blink: .1, duration: .06 }, "+=.35").to(s, { blink: 1, duration: .08 })
-      .to(s, { blink: .1, duration: .06 }, "+=.12").to(s, { blink: 1, duration: .08 })
+    // Vira para a câmera e pisca
+    tl.to(s, { ex: 0, ey: 0, head: 8, neck: 3, duration: .25, ease: "back.out(2)" }, "+=.05")
+      .to(s, { blink: .1, duration: .05 }, "+=.15").to(s, { blink: 1, duration: .07 })
       // A tela acende e ilumina tudo, como a luz da luminária
-      .to(s, { glow: 1, head: 0, neck: 0, duration: .25 }, "+=.25")
-      .to(s, { beam: 1, duration: 1.2, ease: "power1.inOut" }, "<.05")
-      .to(s, { hm: 1, duration: .45, ease: "power2.out" }, "<.45")
-      .to(s, { sweep: 700, duration: 1, ease: "power1.inOut" }, "<.2")
-      .to(s, { glow: .55, duration: .5 }, "<.3")
-      .to(s, { blink: .1, duration: .06 }, "+=.1").to(s, { blink: 1, duration: .08 })
-      .to({}, { duration: 1.3 });
+      .to(s, { glow: 1, head: 0, neck: 0, duration: .2 }, "+=.1")
+      .to(s, { beam: 1, duration: .9, ease: "power1.inOut" }, "<.05")
+      .to(s, { hm: 1, duration: .35, ease: "power2.out" }, "<.35")
+      .to(s, { sweep: 700, duration: .8, ease: "power1.inOut" }, "<.15")
+      .to(s, { glow: .55, duration: .4 }, "<.3")
+      .to({}, { duration: .5 });
 
     return new Promise(resolve => {
       let finished = false;
@@ -258,7 +246,7 @@
         setTimeout(() => { tl.kill(); el.root.remove(); resolve() }, 650);
       };
       tl.call(() => el.tag.classList.add("on"), [], "-=.6");
-      tl.call(finish, [], "+=.35");
+      tl.call(finish, [], "+=.1");
       el.skip.addEventListener("click", finish);
       document.documentElement.classList.add("intro-lock");
       render();
