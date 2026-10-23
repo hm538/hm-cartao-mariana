@@ -4,7 +4,7 @@ window.HM_PROFILE = {
   slug: "mariana",
   name: "Mariana Guimarães",
   role: "CEO da HM Digital",
-  photo: "",                            // ex.: "/assets/img/foto.jpg" (vazio = iniciais)
+  photo: "/assets/img/foto.jpg",
   status: "Agenda aberta",
   bio: [
       "Sou Mariana Guimarães, CEO da HM Digital. Acredito que marketing bom é aquele que vira resultado para o negócio.",
