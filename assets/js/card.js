@@ -76,7 +76,7 @@
       `<a href="${wa(p)}" target="_blank" rel="noopener">${icon("whatsapp")}WhatsApp</a>`,
       p.instagram
         ? `<a href="${ig(p.instagram)}" target="_blank" rel="noopener">${icon("instagram")}Instagram</a>`
-        : `<a href="mailto:${esc(p.email)}">${icon("mail")}E-mail</a>`,
+        : `<a href="${wa(p)}" target="_blank" rel="noopener">${icon("whatsapp")}Mensagem</a>`,
       `<button type="button" data-share>${icon("share")}Compartilhar</button>`
     ].join("");
 
@@ -85,7 +85,7 @@
       p.instagram && link(ig(p.instagram), "instagram", "Me siga no Instagram", `@${p.instagram}`),
       company.instagram && link(ig(company.instagram), "instagram", "Siga a HM no Instagram", "Bastidores e projetos novos"),
       company.site && link(company.site, "globe", "Conheça o site da HM", company.site.replace(/^https?:\/\//, "")),
-      link(`mailto:${p.email}`, "mail", "Mande um e-mail", p.email)
+      p.email && link(`mailto:${p.email}`, "mail", "Mande um e-mail", p.email)
     ].filter(Boolean).join("");
 
     return `
@@ -160,7 +160,7 @@
       `N:${rest.join(" ")};${given};;;`, `FN:${p.name}`,
       `ORG:${p.company}`, `TITLE:${p.role}`,
       `TEL;TYPE=CELL:${p.phone.replace(/[^\d+]/g, "")}`,
-      `EMAIL;TYPE=WORK:${p.email}`,
+      p.email ? `EMAIL;TYPE=WORK:${p.email}` : "",
       `URL:${location.href}`,
       p.instagram ? `X-SOCIALPROFILE;TYPE=instagram:${ig(p.instagram)}` : "",
       "END:VCARD"

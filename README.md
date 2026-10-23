@@ -1,4 +1,4 @@
-# Cartão digital · Mariana
+# Cartão digital · Mariana Guimarães
 
 Cartão digital de Mariana, CEO da HM Digital, com a abertura animada do gimbal: ele entra pulando, sobe nas letras, amassa o "I" de DIGITAL e acende a tela, revelando o logo da HM.
 
