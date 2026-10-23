@@ -53,7 +53,7 @@
   <section aria-labelledby="s-serv">
     <div class="sec-head">
       <span class="eyebrow">O que a HM faz</span>
-      <h2 id="s-serv">Presença digital <span>com acabamento de marca grande.</span></h2>
+      <h2 id="s-serv">Marketing e tecnologia <span>para sua empresa vender mais.</span></h2>
     </div>
     <div class="services">
       ${company.services.map(s => `<div class="svc"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p><span class="tag">${esc(s.tag)}</span></div>`).join("")}

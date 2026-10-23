@@ -22,11 +22,21 @@
         <stop offset="1" stop-color="#0a2462"/>
       </linearGradient>
       <linearGradient id="ig-letters" gradientUnits="userSpaceOnUse" x1="0" y1="304" x2="0" y2="400">
-        <stop offset="0" stop-color="#e3edff"/>
-        <stop offset=".45" stop-color="#5d93f5"/>
-        <stop offset=".55" stop-color="#1f56c8"/>
-        <stop offset="1" stop-color="#9fc1ff"/>
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".48" stop-color="#eef2f9"/>
+        <stop offset=".52" stop-color="#cfd8e8"/>
+        <stop offset="1" stop-color="#f4f7fc"/>
       </linearGradient>
+      <!-- DIGITAL: letras retas e pesadas, com cantos chanfrados como o logo -->
+      <g id="ig-dig-paths">
+        <path d="M81 314V390H113L123 380V324L113 314Z"/>
+        <path d="M163 304V400"/>
+        <path d="M255 314H203V390H245V354H226"/>
+        <path id="ig-i" d="M285 304V400"/>
+        <path d="M315 314H373M344 324V400"/>
+        <path d="M405 400V326L417 314H435L447 326V400M415 358H437"/>
+        <path d="M489 304V390H529"/>
+      </g>
       <linearGradient id="ig-grip" x1="0" x2="1">
         <stop offset="0" stop-color="#121a2c"/>
         <stop offset=".45" stop-color="#34425f"/>
@@ -52,7 +62,7 @@
         <stop offset="1" stop-color="#8fb4ff" stop-opacity="0"/>
       </linearGradient>
       <mask id="ig-sweep-mask">
-        <use href="#ig-letters-shape" stroke="#fff"/>
+        <use href="#ig-dig-paths" fill="none" stroke="#fff" stroke-width="20"/>
         <use href="#ig-hm-shape" fill="#fff"/>
       </mask>
     </defs>
@@ -66,14 +76,9 @@
         <path d="M56 60V4h15l14 24 14-24h15v56H98V30L85 52 72 30v30z"/>
       </g>
 
-      <g id="ig-letters-shape" fill="none" stroke="url(#ig-letters)" stroke-width="16" stroke-linejoin="miter">
-        <path d="M79 312V392H113L125 380V324L113 312Z"/>
-        <path d="M163 304V400"/>
-        <path d="M255 312H201V392H247V352H226"/>
-        <path id="ig-i" d="M285 304V400"/>
-        <path d="M315 312H373M344 320V400"/>
-        <path d="M403 400V324L415 312H437L449 324V400M411 356H441"/>
-        <path d="M487 304V392H529"/>
+      <g fill="none" stroke-width="20" stroke-linejoin="miter">
+        <use href="#ig-dig-paths" stroke="#123a8f" transform="translate(3 4)"/>
+        <use href="#ig-dig-paths" stroke="url(#ig-letters)"/>
       </g>
 
       <rect class="ig-sweep" x="-120" y="0" width="70" height="470" fill="#fff" opacity=".55"
@@ -241,7 +246,7 @@
       .to(s, { sweep: 700, duration: 1, ease: "power1.inOut" }, "<.2")
       .to(s, { glow: .55, duration: .5 }, "<.3")
       .to(s, { blink: .1, duration: .06 }, "+=.1").to(s, { blink: 1, duration: .08 })
-      .to({}, { duration: .6 });
+      .to({}, { duration: 1.3 });
 
     return new Promise(resolve => {
       let finished = false;
@@ -257,6 +262,7 @@
       el.skip.addEventListener("click", finish);
       document.documentElement.classList.add("intro-lock");
       render();
+      tl.timeScale(1.6);   // velocidade geral da abertura (maior = mais rápida)
       tl.play();
     });
   }
