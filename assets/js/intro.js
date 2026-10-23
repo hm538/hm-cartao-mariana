@@ -61,7 +61,7 @@
     <rect x="-200" y="${FLOOR}" width="1000" height="1.5" fill="url(#ig-floor)"/>
 
     <g class="ig-scene">
-      <g id="ig-hm-shape" class="ig-hm" transform="translate(192 30) scale(1.8)" fill="url(#ig-chrome)">
+      <g id="ig-hm-shape" class="ig-hm" transform="translate(171 14) scale(2.15)" fill="url(#ig-chrome)">
         <path d="M2 4h16v22h16V4h16v56H34V40H18v20H2z"/>
         <path d="M56 60V4h15l14 24 14-24h15v56H98V30L85 52 72 30v30z"/>
       </g>

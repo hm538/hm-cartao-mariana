@@ -23,7 +23,7 @@ window.HM_PROFILE = {
 // Dados da HM. São iguais nos dois cartões (José e Mariana).
 window.HM_COMPANY = {
   name: "HM Digital",
-  logo: "",                               // TODO: "/assets/img/logo-hm.png" quando o arquivo do logo for adicionado
+  logo: "/assets/img/logo-hm.png",        // logo oficial (PNG transparente)
   instagram: "hmdigital",                 // TODO: @ da empresa
   site: "",                               // ex.: "https://hmdigital.com.br"
   services: [

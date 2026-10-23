@@ -51,6 +51,7 @@ button { font: inherit; color: inherit }
 
 /* ---------- logo ---------- */
 .mark { display: block; height: 30px; width: auto; object-fit: contain }
+img.mark { filter: drop-shadow(0 0 10px rgba(76, 141, 255, .35)) }
 .mark { fill: url(#chrome) }
 .brand { display: flex; align-items: center; gap: 10px }
 .brand span { font: 500 15px var(--body); letter-spacing: .02em; color: var(--ice) }
