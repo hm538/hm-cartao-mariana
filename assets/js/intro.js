@@ -12,7 +12,7 @@
 
   const markup = `
   <button class="intro-skip" type="button">Pular abertura</button>
-  <svg class="intro-stage" viewBox="0 0 600 470" overflow="visible" aria-hidden="true">
+  <svg class="intro-stage" viewBox="0 0 600 480" overflow="visible" aria-hidden="true">
     <defs>
       <linearGradient id="ig-chrome" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#0b2f7a"/>
@@ -61,6 +61,12 @@
         <stop offset=".5" stop-color="#8fb4ff" stop-opacity=".45"/>
         <stop offset="1" stop-color="#8fb4ff" stop-opacity="0"/>
       </linearGradient>
+      <!-- Facho de luz que sai da tela do celular (aponta para cima; é girado no script) -->
+      <linearGradient id="ig-cone-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="-200">
+        <stop offset="0" stop-color="#cfe0ff" stop-opacity=".55"/>
+        <stop offset=".6" stop-color="#7fb0ff" stop-opacity=".18"/>
+        <stop offset="1" stop-color="#7fb0ff" stop-opacity="0"/>
+      </linearGradient>
       <mask id="ig-sweep-mask">
         <use href="#ig-dig-paths" fill="none" stroke="#fff" stroke-width="20"/>
         <use href="#ig-hm-shape" fill="#fff"/>
@@ -87,6 +93,9 @@
 
     <ellipse id="ig-shadow" cx="0" cy="${FLOOR + 2}" rx="26" ry="4.5" fill="#000" opacity=".55"/>
 
+    <text id="ig-tag" x="300" y="452" text-anchor="middle" fill="#cfe0ff" opacity="0"
+          style="font: 500 21px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: 5px">FEITO PARA SER LEMBRADO.</text>
+    <path id="ig-cone" d="M-9 0L9 0L170 -200L-170 -200Z" fill="url(#ig-cone-grad)" opacity="0"/>
     <circle id="ig-flash" cx="0" cy="0" r="40" fill="url(#ig-beam)" opacity="0"/>
 
     <g id="gb">
@@ -120,7 +129,7 @@
       </g>
     </g>
   </svg>
-  <p class="intro-tag">Feito para ser lembrado.</p>`;
+`;
 
   function setAttr(el, v) { el.setAttribute("transform", v) }
 
@@ -142,7 +151,7 @@
       gb: $("#gb"), squash: $("#gb-squash"), neck: $("#gb-neck"), head: $("#gb-head"),
       eyes: $("#gb-eyes"), screen: $("#gb-screen"), letterI: $("#ig-i"),
       shadow: $("#ig-shadow"), beam: $("#ig-flash"), sweep: $(".ig-sweep"),
-      scene: $(".ig-scene"), hm: $(".ig-hm"), tag: $(".intro-tag"), skip: $(".intro-skip")
+      scene: $(".ig-scene"), hm: $(".ig-hm"), tag: $("#ig-tag"), cone: $("#ig-cone"), skip: $(".intro-skip")
     };
   }
 
@@ -153,7 +162,8 @@
     // Estado animado. O GSAP mexe nesses números e render() desenha.
     const s = {
       x: 700, y: FLOOR, sx: 1, sy: 1, neck: 0, head: 0,
-      ex: 0, ey: 0, blink: 1, iScale: 1, scene: 0, hm: 0, beam: 0, sweep: -120, glow: 0
+      ex: 0, ey: 0, blink: 1, iScale: 1, scene: 0, hm: 0, beam: 0, sweep: -120, glow: 0,
+      cone: 0, coneAng: 0, coneLen: .7, tag: 0
     };
 
     function render() {
@@ -169,6 +179,9 @@
       el.shadow.setAttribute("rx", 26 * GB * Math.max(.45, 1 - lift / 260) * s.sx);
       el.shadow.setAttribute("opacity", .55 * Math.max(.2, 1 - lift / 200));
       el.scene.style.opacity = s.scene;
+      el.tag.setAttribute("opacity", s.tag);
+      el.cone.setAttribute("opacity", s.cone);
+      setAttr(el.cone, `translate(${s.x + 6 * GB} ${s.y - 132 * GB}) rotate(${s.coneAng}) scale(1 ${s.coneLen})`);
       el.hm.style.opacity = s.hm;
       el.sweep.setAttribute("x", s.sweep);
       el.screen.setAttribute("fill", mix("#0d2a66", "#7fb0ff", s.glow));
@@ -225,16 +238,23 @@
     hop(I_X, capTop, 30, .36);
     stomp(.5, 26);
     stomp(0, 22);
-    // Vira para a câmera e pisca
+    // Vira para a câmera, pisca e a tela acende
     tl.to(s, { ex: 0, ey: 0, head: 8, neck: 3, duration: .25, ease: "back.out(2)" }, "+=.05")
       .to(s, { blink: .1, duration: .05 }, "+=.15").to(s, { blink: 1, duration: .07 })
-      // A tela acende e ilumina tudo, como a luz da luminária
-      .to(s, { glow: 1, head: 0, neck: 0, duration: .2 }, "+=.1")
-      .to(s, { beam: 1, duration: .9, ease: "power1.inOut" }, "<.05")
-      .to(s, { hm: 1, duration: .35, ease: "power2.out" }, "<.35")
-      .to(s, { sweep: 700, duration: .8, ease: "power1.inOut" }, "<.15")
-      .to(s, { glow: .55, duration: .4 }, "<.3")
-      .to({}, { duration: .5 });
+      .to(s, { glow: 1, head: 0, neck: 0, duration: .2 }, "+=.05")
+      .to(s, { beam: 1, duration: .6, ease: "power1.out" }, "<")
+      // Olha para cima e ilumina o logo, como a luminária da Pixar
+      .to(s, { head: -12, ey: -4, duration: .3, ease: "power2.out" })
+      .to(s, { cone: 1, duration: .3 }, "<.1")
+      .to(s, { hm: 1, duration: .5, ease: "power2.out" }, "<.1")
+      .to(s, { sweep: 700, duration: .9, ease: "power1.inOut" }, "<.2")
+      // Gira a cabeça para baixo e ilumina a frase
+      .to(s, { head: 16, ey: 4, ex: 2, coneAng: 180, coneLen: 1.25, duration: .7, ease: "power2.inOut" }, "+=.6")
+      .to(s, { tag: 1, duration: .5 }, "-=.3")
+      // Volta para a câmera; logo e frase ficam acesos para ler
+      .to(s, { head: 0, ey: 0, ex: 0, cone: 0, duration: .4 }, "+=1")
+      .to(s, { blink: .1, duration: .05 }, "+=.1").to(s, { blink: 1, duration: .07 })
+      .to({}, { duration: 1.6 });
 
     return new Promise(resolve => {
       let finished = false;
@@ -245,7 +265,6 @@
         document.documentElement.classList.remove("intro-lock");
         setTimeout(() => { tl.kill(); el.root.remove(); resolve() }, 650);
       };
-      tl.call(() => el.tag.classList.add("on"), [], "-=.6");
       tl.call(finish, [], "+=.1");
       el.skip.addEventListener("click", finish);
       document.documentElement.classList.add("intro-lock");
