@@ -3,15 +3,15 @@
 window.HM_PROFILE = {
   slug: "mariana",
   name: "Mariana Guimarães",
-  role: "CEO da HM Digital",
+  role: "Sócia-fundadora · Estratégia & Marketing",
   photo: "/assets/img/foto.jpg",
   status: "Agenda aberta",
   bio: [
-      "Sou Mariana Guimarães, CEO da HM Digital. Acredito que marketing bom é aquele que vira resultado para o negócio.",
-      "Na HM, a gente junta estratégia, conteúdo e tecnologia: do Instagram ao CRM, do site ao sistema de delivery.",
-      "Gosto de entender a fundo cada cliente para entregar soluções com a cara da marca e que facilitam o dia a dia da empresa."
+      "Sou a Mariana, sócia-fundadora da HM Digital. Cuido da estratégia e do marketing: como a sua marca aparece, o que ela fala e para quem.",
+      "Redes sociais, conteúdo, tráfego pago e identidade visual trabalhando juntos para atrair o cliente certo.",
+      "Antes de criar qualquer campanha, eu escuto a história do seu negócio. É dela que sai cada ideia."
   ],
-  signature: "HM Digital. Marketing e tecnologia para crescer.",
+  signature: "Marketing com a cara da sua marca.",
   whatsapp: "5562984134046",          // DDI + DDD + número, só dígitos
   whatsappMsg: "Olá, Mariana! Vim pelo seu cartão digital.",
   phone: "+55 62 98413-4046",

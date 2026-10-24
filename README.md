@@ -1,6 +1,6 @@
 # Cartão digital · Mariana Guimarães
 
-Cartão digital de Mariana, CEO da HM Digital, com a abertura animada do gimbal: ele entra pulando, sobe nas letras, amassa o "I" de DIGITAL e acende a tela, revelando o logo da HM.
+Cartão digital de Mariana, sócia-fundadora da HM Digital, com a abertura animada do gimbal: ele entra pulando, sobe nas letras, amassa o "I" de DIGITAL e acende a tela, revelando o logo da HM.
 
 ## Editar os dados
 
@@ -9,7 +9,7 @@ Tudo fica em `assets/js/perfil.js`. Os campos marcados com `TODO` ainda precisam
 - **Foto:** coloque o arquivo em `assets/img/foto.jpg` (quadrado, 600×600) e preencha `photo: "/assets/img/foto.jpg"`.
 - **Logo da HM:** coloque o arquivo em `assets/img/logo-hm.png` (ou `.svg`, fundo transparente) e preencha `logo` em `HM_COMPANY`. Ele aparece no topo, no rodapé e no brilho final da abertura.
 
-Este repositório e o do outro CEO usam o mesmo código. Só o `perfil.js`, o `index.html` (título) e as fotos mudam. Se alterar o visual ou a abertura, copie `assets/css`, `assets/js/card.js` e `assets/js/intro.js` para o outro repositório também.
+Este repositório e o do outro sócio usam o mesmo código. Só o `perfil.js`, o `index.html` (título) e as fotos mudam. Se alterar o visual ou a abertura, copie `assets/css`, `assets/js/card.js` e `assets/js/intro.js` para o outro repositório também.
 
 ## Abertura
 
