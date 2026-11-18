@@ -47,6 +47,7 @@
     ${mark('style="height:40px"')}
     <span class="tagline">Feito para ser lembrado.</span>
     <div class="foot-row"><span>© ${new Date().getFullYear()} HM Digital</span><button type="button" data-replay>Rever abertura</button></div>
+    <a class="credit" href="${esc(company.site || "https://www.hmdigitalgo.com")}" target="_blank" rel="noopener">Feito por <b>HM Digital</b></a>
   </footer>`;
 
   const services = () => `

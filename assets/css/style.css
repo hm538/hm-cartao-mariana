@@ -223,3 +223,8 @@ footer .tagline { font: 500 10.5px var(--mono); letter-spacing: .3em; text-trans
   .qr { grid-template-columns: 1fr }
   .quick a, .quick button { font-size: 10.5px }
 }
+
+/* crédito "Feito por HM Digital" */
+.credit { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); padding-top: 4px }
+.credit b { font-weight: 600; color: var(--ice) }
+.credit:hover, .credit:hover b { color: var(--electric) }

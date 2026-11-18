@@ -25,7 +25,7 @@ window.HM_COMPANY = {
   name: "HM Digital",
   logo: "/assets/img/logo-hm.png",        // logo oficial (PNG transparente)
   instagram: "agencia_hmdigital",
-  site: "",                               // ex.: "https://hmdigital.com.br"
+  site: "https://www.hmdigitalgo.com",     // site da HM (vai no crédito do rodapé)
   services: [
     { title: "Marketing digital", text: "Redes sociais, tráfego pago e conteúdo para atrair os clientes certos.", tag: "Marketing" },
     { title: "Sistemas sob medida", text: "Ferramentas feitas para a rotina da sua empresa, no lugar de planilhas espalhadas.", tag: "Sistemas" },
